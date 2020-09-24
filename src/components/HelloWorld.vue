@@ -1,58 +1,63 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
-  </div>
+    <div class="charts">
+        <Pie :id="id" :option="option"></Pie>
+    </div>
 </template>
 
 <script>
+import Pie from '../components/Pie'
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
+    components: {
+        Pie,
+    },
+    data() {
+        return {
+            id: 'test',
+            option: {
+                chart: {
+                    type: 'pie',//饼图
+                     options3d: {
+                         enabled: true,//使用3d功能
+                         alpha: 60,//延y轴向内的倾斜角度
+                         beta: 0,   
+                     }
+                },
+                title: {
+                    text: '测试用'//图表的标题文字
+                },
+                subtitle: {
+                    text: ''//副标题文字
+                },
+
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,//每个扇块能否选中
+                    cursor: 'pointer',//鼠标指针
+                    depth: 35,//饼图的厚度
+                    dataLabels: {
+                        enabled: true,//是否显示饼图的线形tip
+                    }
+                }
+            },
+                series: [
+                {
+                    type: 'pie',
+                    name: '测试用1',//统一的前置词,非必须
+                    data: [
+                        ['测试1',12],//模块名和所占比，也可以{name: '测试1',y: 12}
+                        ['测试2',23],
+                        ['测试3',19],
+                        ['测试4',29]
+                    ]
+                 }
+                ]
+            }
+        }
+    },
+
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>
