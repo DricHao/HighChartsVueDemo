@@ -1,5 +1,5 @@
 # highchartdemo
-
+## 本demo使用vuecli 3搭建，vuecli2中该代码同样适用
 ## Project setup
 ```
 npm install
